@@ -22,6 +22,9 @@ import {
 } from "@/components/ui/form";
 import { toast } from "react-hot-toast";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AlertModal from "@/components/modals/alert-modal";
+import ApiAlert from "@/components/ui/api-alert";
+import { useOrigin } from "@/hooks/use-origin";
 
 interface SettingsRormProps {
   initialData: Store;
@@ -36,6 +39,8 @@ type SettingsFormValues = z.infer<typeof formShema>;
 const SettingsForm: React.FC<SettingsRormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +52,7 @@ const SettingsForm: React.FC<SettingsRormProps> = ({ initialData }) => {
   const onSubmit = async (data: SettingsFormValues) => {
     try {
       setLoading(true);
-      await axios.patch(`/api/stores/${params.soreId}`, data);
+      await axios.patch(`/api/stores/${params.storeId}`, data);
       router.refresh();
       toast.success(`Store updated`);
     } catch (error) {
@@ -56,8 +61,30 @@ const SettingsForm: React.FC<SettingsRormProps> = ({ initialData }) => {
       setLoading(false);
     }
   };
+
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/stores/${params.storeId}`);
+      router.refresh();
+      router.push("/");
+      toast.success(`Store deleted`);
+    } catch (error) {
+      toast.error("Make sure you removed all products and categories first.");
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
   return (
     <>
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store" />
         <Button
@@ -99,6 +126,12 @@ const SettingsForm: React.FC<SettingsRormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
+      <Separator />
+      <ApiAlert
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${params.storeId}`}
+        variant="public"
+      />
     </>
   );
 };

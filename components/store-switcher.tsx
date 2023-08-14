@@ -41,17 +41,17 @@ export const StoreSwitcher = ({
   const router = useRouter();
 
   const formattedItems = items.map((item) => ({
-    lable: item.name,
+    label: item.name,
     value: item.id,
   }));
 
   const currentStore = formattedItems.find(
-    (item) => item.value === params.soreId
+    (item) => item.value === params.storeId
   );
 
   const [open, setOpen] = useState(false);
 
-  const onStoreSelect = (store: { value: string; lable: string }) => {
+  const onStoreSelect = (store: { value: string; label: string }) => {
     setOpen(false);
     router.push(`/${store.value}`);
   };
@@ -68,7 +68,7 @@ export const StoreSwitcher = ({
           className={cn("w-[200px] justify-between", className)}
         >
           <StorefrontIcon className="mr-2 h-4 w-4" />
-          {currentStore?.lable}
+          {currentStore?.label}
           <UnfoldMoreIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -85,7 +85,7 @@ export const StoreSwitcher = ({
                   className="text-sm"
                 >
                   <StorefrontIcon className="mr-2 h-4 w-4" />
-                  {store.lable}
+                  {store.label}
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",

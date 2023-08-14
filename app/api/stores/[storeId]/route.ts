@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { soreId: string } }
+  { params }: { params: { storeId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -20,13 +20,13 @@ export async function PATCH(
       return new NextResponse("Name is requred", { status: 400 });
     }
 
-    if (!params.soreId) {
+    if (!params.storeId) {
       return new NextResponse("Store id is requred", { status: 400 });
     }
 
     const store = await prismadb.store.updateMany({
       where: {
-        id: params.soreId,
+        id: params.storeId,
         userId,
       },
       data: {
@@ -42,7 +42,7 @@ export async function PATCH(
 }
 export async function DELETE(
   _req: Request,
-  { params }: { params: { soreId: string } }
+  { params }: { params: { storeId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -51,13 +51,13 @@ export async function DELETE(
       return new NextResponse("Unautorized", { status: 401 });
     }
 
-    if (!params.soreId) {
+    if (!params.storeId) {
       return new NextResponse("Store id is requred", { status: 400 });
     }
 
     const store = await prismadb.store.deleteMany({
       where: {
-        id: params.soreId,
+        id: params.storeId,
         userId,
       },
     });
