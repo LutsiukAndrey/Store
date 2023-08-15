@@ -28,7 +28,7 @@ const formShema = z.object({
   name: z.string().min(1),
   value: z
     .string()
-    .min(4)
+    .min(3)
     .regex(/^#/, { message: "String must be a valid ex code" }),
 });
 
@@ -63,7 +63,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/colors/${params.sizeId}`,
+          `/api/${params.storeId}/colors/${params.colorId}`,
           data
         );
       } else {
@@ -82,12 +82,12 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/colors/${params.sizeId}`);
+      await axios.delete(`/api/${params.storeId}/colors/${params.colorId}`);
       router.refresh();
       router.push(`/${params.storeId}/colors`);
-      toast.success(`Size deleted`);
+      toast.success(`Color deleted`);
     } catch (error) {
-      toast.error("Make sure you removed all products using this size first.");
+      toast.error("Make sure you removed all products using this color first.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -131,7 +131,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Size name"
+                      placeholder="Color name"
                       {...field}
                     />
                   </FormControl>
@@ -146,11 +146,17 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Value</FormLabel>
                   <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Size value"
-                      {...field}
-                    />
+                    <div className="flex items-center gap-x-4">
+                      <Input
+                        disabled={loading}
+                        placeholder="Color value"
+                        {...field}
+                      />
+                      <div
+                        className="border p-4 rounded-full"
+                        style={{ backgroundColor: field.value }}
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

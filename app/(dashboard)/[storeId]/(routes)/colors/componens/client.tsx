@@ -10,11 +10,11 @@ import { Separator } from "@/components/ui/separator";
 import { DataTable } from "@/components/ui/data-table";
 import ApiList from "@/components/ui/api-list";
 
-interface SizeClientProps {
+interface ColorClientProps {
   data: ColorColumn[];
 }
 
-const ColorsClient: React.FC<SizeClientProps> = ({ data }) => {
+const ColorsClient: React.FC<ColorClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
