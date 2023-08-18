@@ -1,6 +1,6 @@
 import prismadb from "@/lib/prismadb";
 import React from "react";
-import CategoryForm from "./component/cotegory-form";
+import CategoryForm from "./components/cotegory-form";
 
 const CategoryPage = async ({
   params,
