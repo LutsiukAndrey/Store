@@ -1,3 +1,5 @@
+Full Stack Store : Next.js 13 React, Tailwind, Prisma, MySQL, Clerc, Stripe
+
 
 ## Getting Started
 
