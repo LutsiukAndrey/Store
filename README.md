@@ -35,8 +35,15 @@ STRIPE_API_KEY=
 FRONTEND_STORE_URL=http://localhost:3001
 STRIPE_WEBHOOK_SECRET=
 ```
+4. Conect to PlanetScale and push Prisma
+```
+npx prisma generate
+npx prisma db push
 
-4.Start the development server:
+```
+
+
+5.Start the development server:
 
 ```
 npm run dev
