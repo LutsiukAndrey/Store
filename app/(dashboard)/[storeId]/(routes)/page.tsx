@@ -4,7 +4,6 @@ import { getTotalRevenue } from "@/actions/getTotalRevenue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import prismadb from "@/lib/prismadb";
 import { formater } from "@/lib/utils";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import CreditScoreOutlinedIcon from "@mui/icons-material/CreditScoreOutlined";
@@ -29,6 +28,7 @@ const DashboardPage: React.FC<DashboardProps> = async ({ params }) => {
     <div className=" flex-col">
       <div className=" flex-1 space-y-4 p-8 pt-6">
         <Heading title="Dashboard" description="Overview of your store" />
+
         <Separator />
         <div className="grid gap-4 grid-cols-3">
           <Card>
