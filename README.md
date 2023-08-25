@@ -4,7 +4,7 @@
 1.Clone this repository:
 
 ```
-git clone https://github.com/LutsiukAndrey/store-front.git
+git clone https://github.com/LutsiukAndrey/store-admin.git
 ```
 
 2.Install project dependencies:
