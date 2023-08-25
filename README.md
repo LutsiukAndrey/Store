@@ -1,6 +1,6 @@
-Full Stack Store : Next.js 13 React, Tailwind, Prisma, MySQL, Clerc, Stripe
+## Full Stack Store : Next.js 13 React, Tailwind, Prisma, MySQL, Clerc, Stripe
 
-
+Link to   [Store](https://github.com/LutsiukAndrey/store-front) 
 ## Getting Started
 
 1.Clone this repository:
